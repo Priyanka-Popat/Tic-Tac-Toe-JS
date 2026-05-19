@@ -31,6 +31,11 @@ The game allows two players to play Tic Tac Toe by taking turns. It checks for w
 - Tailwind CSS
 - JavaScript
 
+## 📸 Preview
+
+<img width="1920" height="918" alt="image" src="https://github.com/user-attachments/assets/8dd5b606-0539-457c-8575-e6a9a67f6821" />
+
+
 ## How to Run
 
 Clone this repository:
