@@ -36,7 +36,7 @@ The game allows two players to play Tic Tac Toe by taking turns. It checks for w
 Clone this repository:
 
 ```bash
-git clone [<repository-link>](https://github.com/Priyanka-Popat/Tic-Tac-Toe-JS.git)
+git clone https://github.com/Priyanka-Popat/Tic-Tac-Toe-JS.git
 ```
 
 Open the project folder:
