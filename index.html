@@ -1,32 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="h-screen bg-gradient-to-br from-[#FFF7F1] to-[#A5DEE5] flex items-center justify-center">
-  <div class="grid grid-cols-3 gap-2 bg-white/40 backdrop-blur-md p-4 rounded-2xl shadow-lg">
-    <div class="w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition">
+  </head>
+  <body
+    class="h-screen bg-gradient-to-br from-[#FFF7F1] to-[#A5DEE5] flex items-center flex-col gap-5 justify-center"
+  >
+    <p class="text-2xl font-bold text-gray-700 status h-10"></p>
+    <div
+      class="game-board grid grid-cols-3 gap-2 bg-white/40 backdrop-blur-md p-4 rounded-2xl shadow-lg"
+    >
+      <button
+        class="cell w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition"
+      ></button>
+      <button
+        class="cell w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition"
+      ></button>
+      <button
+        class="cell w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition"
+      ></button>
+      <button
+        class="cell w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition"
+      ></button>
+      <button
+        class="cell w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition"
+      ></button>
+      <button
+        class="cell w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition"
+      ></button>
+      <button
+        class="cell w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition"
+      ></button>
+      <button
+        class="cell w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition"
+      ></button>
+      <button
+        class="cell w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition"
+      ></button>
     </div>
-    <div class="w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition">
+    <div class="h-10">
+      <button
+        class="bg-white/40 backdrop-blur-md px-2 py-1 rounded-sm shadow-lg text-gray-700 resetBtn hidden cursor-pointer"
+        onclick="resetButton()"
+      >
+        Reset
+      </button>
     </div>
-    <div class="w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition">
-    </div>
-    <div class="w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition">
-    </div>
-    <div class="w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition">
-    </div>
-    <div class="w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition">
-    </div>
-    <div class="w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition">
-    </div>
-    <div class="w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition">
-    </div>
-    <div class="w-24 h-24 bg-white/70 rounded-xl flex items-center justify-center text-4xl font-bold text-gray-700 hover:bg-white/90 transition">
-    </div>
-  </div>
-</body>
+  </body>
+  <script>
+    const cells = document.querySelectorAll(".cell");
+    let game = ["", "", "", "", "", "", "", "", ""];
+    let cellCount = 0;
+    for (const [index, cell] of cells.entries()) {
+      cell.addEventListener("click", (event) => {
+        if (cell.textContent !== "") {
+          return;
+        }
+        if (cellCount % 2 === 0) {
+          cell.textContent = `X`;
+          // game.push("X");
+          game[index] = "X";
+          cellCount++;
+          // console.log(game);
+        } else {
+          cell.textContent = `O`;
+          game[index] = "O";
+          cellCount++;
+        }
 
+        if (checkWin("X")) {
+          console.log("X wins");
+          document.querySelector(".status").textContent = "X Wins!";
+        } else if (checkWin("O")) {
+          console.log("O wins");
+          document.querySelector(".status").textContent = "O Wins!";
+        } else if (cellCount === 9) {
+          console.log("Tie");
+          document.querySelector(".status").textContent = "It's a Tie!";
+        } else {
+          const next = cellCount % 2 === 0 ? "X" : "O";
+          document.querySelector(".status").textContent = `${next}'s turn`;
+        }
+
+        if (cellCount === 1) {
+          console.log("less then one ");
+          document.querySelector(".resetBtn").classList.remove("hidden");
+        }
+      });
+    }
+
+    function checkWin(player) {
+      return (
+        (game[0] === player && game[1] === player && game[2] === player) ||
+        (game[3] === player && game[4] === player && game[5] === player) ||
+        (game[6] === player && game[7] === player && game[8] === player) ||
+        (game[0] === player && game[3] === player && game[6] === player) ||
+        (game[1] === player && game[4] === player && game[7] === player) ||
+        (game[2] === player && game[5] === player && game[8] === player) ||
+        (game[0] === player && game[4] === player && game[8] === player) ||
+        (game[2] === player && game[4] === player && game[6] === player)
+      );
+    }
+
+    function resetButton() {
+      game = ["", "", "", "", "", "", "", "", ""];
+      console.log("click");
+      cellCount = 0;
+      document.querySelector(".resetBtn").classList.add("hidden");
+      for (const [index, cell] of cells.entries()) {
+        cell.textContent = "";
+      }
+      document.querySelector(".status").textContent = "";
+    }
+  </script>
 </html>
