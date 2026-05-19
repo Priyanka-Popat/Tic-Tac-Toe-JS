@@ -62,7 +62,3 @@ While building this project, I learned:
 - Writing game logic for win conditions
 - Using loops and conditional statements
 - Updating UI dynamically
-
-## Author
-
-**Priyanka Popat**
